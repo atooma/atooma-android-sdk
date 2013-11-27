@@ -185,3 +185,27 @@ Values allowed:
 - "TEXT-FILTER"
 - "TIME"
 - "URI"
+
+PLUGIN Value
+------------
+
+Whit PLUGIN value you can use your own activity in order to take a String as parameter. You have to use addParameter like this:
+
+```
+	addParameter(R.string.parameter_name, R.string.parameter_ifnull, "NAME", "PLUGIN", true, "com.atooma.plugin.test.MainActivity");
+```
+
+And in the MainActivity you have to set the result:
+
+```				Intent intent = new Intent();
+				intent.putExtra(AtoomaParams.ACTIVITY_RESULT_KEY, string);
+				setResult(RESULT_OK, intent);
+				finish();
+```
+
+the in onInvoke you can get the parameter
+
+```
+String myParameters = (String) parameters.get("NAME");
+```
+
