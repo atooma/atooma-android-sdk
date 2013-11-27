@@ -70,8 +70,8 @@ public abstract class ConditionChecker extends IConditionCheckerPlugin.Stub impl
 		return this;
 	}
 
-	public void addParameter(int labelResId, int labelNullResId, String name, String type, boolean isRequired) {
-		Values value = new Values(name, type, isRequired);
+	public void addParameter(int labelResId, int labelNullResId, String name, String type, boolean isRequired, String activity) {
+		Values value = new Values(name, type, isRequired, activity);
 		parameters.add(value);
 		parameterLabels.add(labelResId);
 		parameterNullLabels.add(labelNullResId);
