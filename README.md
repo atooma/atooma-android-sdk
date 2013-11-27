@@ -18,6 +18,10 @@ File -> New -> Android Project from existing Code
 ```
 and browse the folder you created.
 
+How Atooma Works
+----------------
+(Explain here how Atooma works, introducing TRs, CCs and PEs)
+
 Triggers
 --------
 Triggers are components that are responsible to forword a notification when a
@@ -25,13 +29,13 @@ specific event occours. They are the "IF" part of a rule.
 Each trigger can specify a list of input parameters and output variables; parameters and
 variables must be declared in each trigger class.
 
-A trigger can be of three types
+There are 3 types of trigger:
 
--IntentBasedTrigger: the received() method is called when a specified intent is called
--AlarmBasedTrigger:the onTimeout() method is called in a specific time set by the developer.
--Trigger:the onInvoke method is called when the rule is activated
+-Trigger: the classic one, onInvoke method is called when the rule is activated
+-IntentBasedTrigger: onReceive() method is called when a specified intent is called
+-AlarmBasedTrigger: onTimeout() method is called at a specific moment set by the developer.
 
-When a trigger wants to notify Atooma that the rule has to trigger must call the trigger() method.
+When a trigger wants to notify Atooma that the rule has to trigger, it must call the trigger() method.
 
 Create your first Module
 ------------------------
