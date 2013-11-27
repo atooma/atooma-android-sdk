@@ -31,9 +31,9 @@ variables must be declared in each trigger class.
 
 There are 3 types of trigger:
 
--Trigger: the classic one, onInvoke method is called when the rule is activated
--IntentBasedTrigger: onReceive() method is called when a specified intent is called
--AlarmBasedTrigger: onTimeout() method is called at a specific moment set by the developer.
+- Trigger: the classic one, onInvoke method is called when the rule is activated
+- IntentBasedTrigger: onReceive() method is called when a specified intent is called
+- AlarmBasedTrigger: onTimeout() method is called at a specific moment set by the developer.
 
 When a trigger wants to notify Atooma that the rule has to trigger, it must call the trigger() method.
 
