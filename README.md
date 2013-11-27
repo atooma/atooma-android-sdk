@@ -197,10 +197,11 @@ Whit PLUGIN value you can use your own activity in order to take a String as par
 
 And in the MainActivity you have to set the result:
 
-```				Intent intent = new Intent();
-				intent.putExtra(AtoomaParams.ACTIVITY_RESULT_KEY, string);
-				setResult(RESULT_OK, intent);
-				finish();
+```
+	Intent intent = new Intent();
+	intent.putExtra(AtoomaParams.ACTIVITY_RESULT_KEY, string);
+	setResult(RESULT_OK, intent);
+	finish();
 ```
 
 the in onInvoke you can get the parameter
