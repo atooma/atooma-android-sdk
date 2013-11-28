@@ -176,14 +176,8 @@ Values allowed:
 
 - "STRING"
 - "BOOLEAN"
-- "DURATION"
-- "NUMBER"
-- "NUMBER-FILTER"
-- "PERCENT"
-- "PERCENT-FILTER"
+- "NUMBER" (Double)
 - "PLUGIN" (it’s like STRING, but you can use it with your own activity)
-- "TEXT-FILTER"
-- "TIME"
 - "URI"
 
 PLUGIN Value
