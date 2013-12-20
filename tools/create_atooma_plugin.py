@@ -126,7 +126,7 @@ manifest_file_content = """
             </intent-filter>
         </receiver>
 
-        <service android:name=".%s"/>
+        <service android:name=".%s" android:process=":remote"/>
     </application>
 
 </manifest>
