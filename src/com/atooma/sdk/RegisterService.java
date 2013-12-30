@@ -8,29 +8,28 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.os.RemoteException;
 
-import com.atooma.IAtoomaService;
+import com.atooma.IAtoomaPluginService;
 import com.atooma.plugin.IModulePlugin;
 
 public abstract class RegisterService extends Service {
 
 	private boolean bound = false;
-	private IAtoomaService mService;
+	private IAtoomaPluginService mService;
 	private ServiceConnection mConnection;
-	private static Boolean mFromInstallBroadcast = false;
 
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		mConnection = new ServiceConnection() {
 
 			public void onServiceConnected(ComponentName className, IBinder service) {
-				mService = IAtoomaService.Stub.asInterface(service);
+				mService = IAtoomaPluginService.Stub.asInterface(service);
 				bound = true;
 
 				IModulePlugin mModule = getModuleInstance();
 
 				if (bound && mModule != null) {
 					try {
-						mService.registerModule(mModule, mFromInstallBroadcast);
+						mService.registerModule(mModule);
 					} catch (RemoteException e) {
 						e.printStackTrace();
 					}
@@ -45,7 +44,7 @@ public abstract class RegisterService extends Service {
 
 		if (!bound) {
 			Intent i = new Intent();
-			i.setClassName("com.atooma", "com.atooma.AtoomaService");
+			i.setClassName("com.atooma", "com.atooma.AtoomaPluginService");
 			bound = bindService(i, mConnection, Context.BIND_AUTO_CREATE);
 		}
 		return super.onStartCommand(intent, flags, startId);
@@ -56,9 +55,5 @@ public abstract class RegisterService extends Service {
 	@Override
 	public IBinder onBind(Intent intent) {
 		return null;
-	}
-
-	public static void registerModule(Boolean fromInstallBroadcast) { //TODO stoppare service
-		mFromInstallBroadcast = fromInstallBroadcast;
 	}
 }

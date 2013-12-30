@@ -9,11 +9,11 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 
-import com.atooma.IAtoomaService;
+import com.atooma.IAtoomaPluginService;
 
 public abstract class ConditionChecker extends IConditionCheckerPlugin.Stub implements IConditionCheckerPlugin {
 
-	protected IAtoomaService mService;
+	protected IAtoomaPluginService mService;
 	protected boolean bound;
 
 	private Context context;
@@ -36,7 +36,7 @@ public abstract class ConditionChecker extends IConditionCheckerPlugin.Stub impl
 		declareParameters();
 		if (!bound) {
 			Intent i = new Intent();
-			i.setClassName("com.atooma", "com.atooma.AtoomaService");
+			i.setClassName("com.atooma", "com.atooma.AtoomaPluginService");
 			bound = context.bindService(i, mConnection, Context.BIND_AUTO_CREATE);
 		}
 	}
@@ -49,7 +49,7 @@ public abstract class ConditionChecker extends IConditionCheckerPlugin.Stub impl
 	public ServiceConnection mConnection = new ServiceConnection() {
 
 		public void onServiceConnected(ComponentName className, IBinder service) {
-			mService = IAtoomaService.Stub.asInterface(service);
+			mService = IAtoomaPluginService.Stub.asInterface(service);
 			bound = true;
 		}
 

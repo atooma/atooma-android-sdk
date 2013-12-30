@@ -10,11 +10,11 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.os.RemoteException;
 
-import com.atooma.IAtoomaService;
+import com.atooma.IAtoomaPluginService;
 
 public abstract class AlarmBasedTrigger extends IAlarmBasedTriggerPlugin.Stub implements IAlarmBasedTriggerPlugin {
 
-	protected IAtoomaService mService;
+	protected IAtoomaPluginService mService;
 	protected boolean bound;
 
 	private Context context;
@@ -40,7 +40,7 @@ public abstract class AlarmBasedTrigger extends IAlarmBasedTriggerPlugin.Stub im
 		declareVariables();
 		if (!bound) {
 			Intent i = new Intent();
-			i.setClassName("com.atooma", "com.atooma.AtoomaService");
+			i.setClassName("com.atooma", "com.atooma.AtoomaPluginService");
 			bound = context.bindService(i, mConnection, Context.BIND_AUTO_CREATE);
 		}
 	}
@@ -66,7 +66,7 @@ public abstract class AlarmBasedTrigger extends IAlarmBasedTriggerPlugin.Stub im
 	public ServiceConnection mConnection = new ServiceConnection() {
 
 		public void onServiceConnected(ComponentName className, IBinder service) {
-			mService = IAtoomaService.Stub.asInterface(service);
+			mService = IAtoomaPluginService.Stub.asInterface(service);
 			bound = true;
 		}
 

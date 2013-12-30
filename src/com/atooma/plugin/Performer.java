@@ -9,20 +9,20 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 
-import com.atooma.IAtoomaService;
+import com.atooma.IAtoomaPluginService;
 
 public abstract class Performer extends IPerformerPlugin.Stub implements IPerformerPlugin {
 
-	private IAtoomaService mService;
+	private IAtoomaPluginService mService;
 	private boolean bound;
 	private String id;
-	
+
 	private Context context;
 	private int normalIcon;
 	private int titleResource;
 	private int pressedIcon;
 	private int version;
-	
+
 	private ArrayList<Values> variables = new ArrayList<Values>();
 	private List<Integer> variableLabels = new ArrayList<Integer>();
 	private ArrayList<Values> parameters = new ArrayList<Values>();
@@ -38,23 +38,26 @@ public abstract class Performer extends IPerformerPlugin.Stub implements IPerfor
 		declareVariables();
 		if (!bound) {
 			Intent i = new Intent();
-			i.setClassName("com.atooma", "com.atooma.AtoomaService");
+			i.setClassName("com.atooma", "com.atooma.AtoomaPluginService");
 			bound = context.bindService(i, mConnection, Context.BIND_AUTO_CREATE);
 		}
 	}
-	
+
 	public abstract void defineUI();
 
-	public void declareParameters() {}
-	public void declareVariables() {}
-	
+	public void declareParameters() {
+	}
+
+	public void declareVariables() {
+	}
+
 	public void addParameter(int labelResId, int labelNullResId, String name, String type, boolean isRequired) {
 		Values value = new Values(name, type, isRequired);
 		parameters.add(value);
 		parameterLabels.add(labelResId);
 		parameterNullLabels.add(labelNullResId);
 	}
-	
+
 	public void addVariable(int labelResId, String name, String type) {
 		Values value = new Values(name, type);
 		variables.add(value);
@@ -86,12 +89,11 @@ public abstract class Performer extends IPerformerPlugin.Stub implements IPerfor
 		return variableLabels;
 	}
 
-	
 	@Override
 	public String getId() {
 		return id;
 	}
-	
+
 	@Override
 	public boolean isVisible() {
 		return true;
@@ -100,7 +102,7 @@ public abstract class Performer extends IPerformerPlugin.Stub implements IPerfor
 	public ServiceConnection mConnection = new ServiceConnection() {
 
 		public void onServiceConnected(ComponentName className, IBinder service) {
-			mService = IAtoomaService.Stub.asInterface(service);
+			mService = IAtoomaPluginService.Stub.asInterface(service);
 			bound = true;
 		}
 
@@ -114,11 +116,11 @@ public abstract class Performer extends IPerformerPlugin.Stub implements IPerfor
 	public IBinder asBinder() {
 		return this;
 	}
-	
+
 	public Context getContext() {
 		return context;
 	}
-	
+
 	public void setTitle(int titleResource) {
 		this.titleResource = titleResource;
 	}
@@ -127,7 +129,7 @@ public abstract class Performer extends IPerformerPlugin.Stub implements IPerfor
 		this.normalIcon = normalIcon;
 		this.pressedIcon = pressedIcon;
 	}
-	
+
 	@Override
 	public int getIconResourceNormal() {
 		return normalIcon;
