@@ -5,7 +5,7 @@ Atooma Software Development Kit allows you to write your own modules for Atooma 
 
 Getting started
 ---------------
-- Download the zip file at …, unzip it and open the “tools” folder.
+- Download the zip file at https://github.com/atooma/atooma-android-sdk, unzip it and open the “tools” folder.
 - Launch our script to create a skeleton for your first plugin:
 
 ```
@@ -14,7 +14,7 @@ Getting started
 - Now you can start working on your plugin! Using Eclipse you can go to 
 
 ```
-File -> New -> Android Project from existing Code 
+File -> New -> Project -> Android Project from existing Code 
 ```
 and browse the folder you created.
 
