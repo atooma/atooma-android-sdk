@@ -58,6 +58,13 @@ public abstract class Performer extends IPerformerPlugin.Stub implements IPerfor
 		parameterNullLabels.add(labelNullResId);
 	}
 
+	public void addParameter(int labelResId, int labelNullResId, String name, String type, boolean isRequired, String activity) {
+		Values value = new Values(name, type, isRequired, activity);
+		parameters.add(value);
+		parameterLabels.add(labelResId);
+		parameterNullLabels.add(labelNullResId);
+	}
+
 	public void addVariable(int labelResId, String name, String type) {
 		Values value = new Values(name, type);
 		variables.add(value);
