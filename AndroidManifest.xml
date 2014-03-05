@@ -10,7 +10,8 @@
     <application
         android:allowBackup="true"
         android:label="@string/app_name" >
-        <service android:name=".RegisterService" />
     </application>
+
+    <service android:name="com.atooma.sdk.RegisterService" />
 
 </manifest>

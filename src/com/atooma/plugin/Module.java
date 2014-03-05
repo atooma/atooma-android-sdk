@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.os.IBinder;
+import android.os.RemoteException;
 
 public abstract class Module extends IModulePlugin.Stub implements IModulePlugin {
 
@@ -19,6 +20,8 @@ public abstract class Module extends IModulePlugin.Stub implements IModulePlugin
 	private int pressedIcon;
 	private int moduleVersion;
 	private String moduleId;
+	private boolean authenticated = false;;
+	private String autenticatedText = "";
 
 	public Module(Context context, String moduleId, int moduleVersion) {
 		this.context = context;
@@ -46,6 +49,10 @@ public abstract class Module extends IModulePlugin.Stub implements IModulePlugin
 	public abstract void registerComponents();
 
 	public abstract void defineUI();
+
+	public abstract void defineAuth();
+
+	public abstract void clearCredentials();
 
 	protected void registerTrigger(IntentBasedTrigger trIntent) {
 		trIntent.setModuleId(getId());
@@ -123,6 +130,11 @@ public abstract class Module extends IModulePlugin.Stub implements IModulePlugin
 		this.pressedIcon = pressedIcon;
 	}
 
+	public void setAuthenticated(boolean authenticated, String text) {
+		this.authenticated = authenticated;
+		this.autenticatedText = text;
+	}
+
 	@Override
 	public void setCategory() {
 
@@ -141,6 +153,22 @@ public abstract class Module extends IModulePlugin.Stub implements IModulePlugin
 	@Override
 	public int getTitleResource() {
 		return titleResource;
+	}
+
+	@Override
+	public boolean isAuthenticated() {
+		defineAuth();
+		return authenticated;
+	}
+
+	@Override
+	public String getAutenticatedText() {
+		return autenticatedText;
+	}
+
+	@Override
+	public void clearAutenticated() throws RemoteException {
+		clearCredentials();
 	}
 
 }

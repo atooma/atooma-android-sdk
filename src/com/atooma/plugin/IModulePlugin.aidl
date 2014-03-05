@@ -16,4 +16,7 @@ interface IModulePlugin {
 		List<IBinder> getConditionCheckers();
 		List<IBinder> getPerformers();
 		String getPackage();
+		boolean isAuthenticated();
+		String getAutenticatedText();
+		void clearAutenticated();
 }

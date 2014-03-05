@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.util.Log;
 
 import com.atooma.IAtoomaPluginService;
 import com.atooma.plugin.IModulePlugin;
@@ -19,9 +20,12 @@ public abstract class RegisterService extends Service {
 
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
+		Log.v("ATOOMAPLUGIN", "onStartCommand");
+
 		mConnection = new ServiceConnection() {
 
 			public void onServiceConnected(ComponentName className, IBinder service) {
+				Log.v("ATOOMA", "onServiceConnected");
 				mService = IAtoomaPluginService.Stub.asInterface(service);
 				bound = true;
 
@@ -46,6 +50,7 @@ public abstract class RegisterService extends Service {
 			Intent i = new Intent();
 			i.setClassName("com.atooma", "com.atooma.AtoomaPluginService");
 			bound = bindService(i, mConnection, Context.BIND_AUTO_CREATE);
+			Log.v("ATOOMAPLUGIN", "try to bind, bound=" + bound);
 		}
 		return super.onStartCommand(intent, flags, startId);
 	}
