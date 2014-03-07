@@ -20,7 +20,8 @@ public abstract class Module extends IModulePlugin.Stub implements IModulePlugin
 	private int pressedIcon;
 	private int moduleVersion;
 	private String moduleId;
-	private boolean authenticated = false;;
+	private boolean authRequired = false;
+	private boolean authenticated = false;
 	private String autenticatedText = "";
 
 	public Module(Context context, String moduleId, int moduleVersion) {
@@ -29,6 +30,7 @@ public abstract class Module extends IModulePlugin.Stub implements IModulePlugin
 		this.moduleVersion = moduleVersion;
 		registerComponents();
 		defineUI();
+		defineAuth();
 	}
 
 	@Override
@@ -131,6 +133,7 @@ public abstract class Module extends IModulePlugin.Stub implements IModulePlugin
 	}
 
 	public void setAuthenticated(boolean authenticated, String text) {
+		this.authRequired = true;
 		this.authenticated = authenticated;
 		this.autenticatedText = text;
 	}
@@ -153,6 +156,11 @@ public abstract class Module extends IModulePlugin.Stub implements IModulePlugin
 	@Override
 	public int getTitleResource() {
 		return titleResource;
+	}
+
+	@Override
+	public boolean isAuthRequired() {
+		return authRequired;
 	}
 
 	@Override
