@@ -16,7 +16,6 @@ proguard.cfg
 .idea/
 out/
 gen/
-bin/
 libs/
 
 #generated
