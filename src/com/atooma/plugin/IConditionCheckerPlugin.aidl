@@ -10,7 +10,6 @@ interface IConditionCheckerPlugin {
 	List<Values> getParameters();
 	int getTitleResource();
 	int getIconResourceNormal();
-	int getIconResourcePressed();
 	List getParameterLabelIfNullResources();
 	List getParameterTitleResources();
 	boolean invoke(String ruleId, in ParameterBundle parameters);

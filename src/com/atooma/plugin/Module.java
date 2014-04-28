@@ -17,7 +17,6 @@ public abstract class Module extends IModulePlugin.Stub implements IModulePlugin
 	private Context context;
 	private int normalIcon;
 	private int titleResource;
-	private int pressedIcon;
 	private int moduleVersion;
 	private String moduleId;
 	private boolean authRequired = false;
@@ -127,9 +126,8 @@ public abstract class Module extends IModulePlugin.Stub implements IModulePlugin
 		this.titleResource = titleResource;
 	}
 
-	public void setIcon(int normalIcon, int pressedIcon) {
+	public void setIcon(int normalIcon) {
 		this.normalIcon = normalIcon;
-		this.pressedIcon = pressedIcon;
 	}
 
 	public void setAuthenticated(boolean authenticated, String text) {
@@ -146,11 +144,6 @@ public abstract class Module extends IModulePlugin.Stub implements IModulePlugin
 	@Override
 	public int getIconResourceNormal() {
 		return normalIcon;
-	}
-
-	@Override
-	public int getIconResourcePressed() {
-		return pressedIcon;
 	}
 
 	@Override

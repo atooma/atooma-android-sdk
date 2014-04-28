@@ -9,7 +9,6 @@ interface IModulePlugin {
 		void setCategory();
 		int getTitleResource();
 		int getIconResourceNormal();
-		int getIconResourcePressed();
 		List<IBinder> getTriggers();
 		List<IBinder> getAlarmTriggers();
 		List<IBinder> getIntentTriggers();

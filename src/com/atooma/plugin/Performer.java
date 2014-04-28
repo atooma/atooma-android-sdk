@@ -20,7 +20,6 @@ public abstract class Performer extends IPerformerPlugin.Stub implements IPerfor
 	private Context context;
 	private int normalIcon;
 	private int titleResource;
-	private int pressedIcon;
 	private int version;
 
 	private ArrayList<Values> variables = new ArrayList<Values>();
@@ -132,19 +131,13 @@ public abstract class Performer extends IPerformerPlugin.Stub implements IPerfor
 		this.titleResource = titleResource;
 	}
 
-	public void setIcon(int normalIcon, int pressedIcon) {
+	public void setIcon(int normalIcon) {
 		this.normalIcon = normalIcon;
-		this.pressedIcon = pressedIcon;
 	}
 
 	@Override
 	public int getIconResourceNormal() {
 		return normalIcon;
-	}
-
-	@Override
-	public int getIconResourcePressed() {
-		return pressedIcon;
 	}
 
 	@Override

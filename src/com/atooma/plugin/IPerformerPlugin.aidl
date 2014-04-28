@@ -13,7 +13,6 @@ interface IPerformerPlugin {
     ParameterBundle onInvoke(String ruleId, in ParameterBundle parameters);
 	int getTitleResource();
 	int getIconResourceNormal();
-	int getIconResourcePressed();
 	List getParameterLabelIfNullResources();
 	List getParameterTitleResources();
 	List getVariableTitleResources();

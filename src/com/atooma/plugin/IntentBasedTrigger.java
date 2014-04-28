@@ -21,7 +21,6 @@ public abstract class IntentBasedTrigger extends IIntentBasedTriggerPlugin.Stub 
 	private Context context;
 	private int normalIcon;
 	private int titleResource;
-	private int pressedIcon;
 	private int version;
 	private String id;
 	private String moduleId;
@@ -144,19 +143,13 @@ public abstract class IntentBasedTrigger extends IIntentBasedTriggerPlugin.Stub 
 		this.titleResource = titleResource;
 	}
 
-	public void setIcon(int normalIcon, int pressedIcon) {
+	public void setIcon(int normalIcon) {
 		this.normalIcon = normalIcon;
-		this.pressedIcon = pressedIcon;
 	}
 
 	@Override
 	public int getIconResourceNormal() {
 		return normalIcon;
-	}
-
-	@Override
-	public int getIconResourcePressed() {
-		return pressedIcon;
 	}
 
 	@Override

@@ -11,7 +11,6 @@ interface IIntentBasedTriggerPlugin {
 	List<Values> getVariables();
 	int getTitleResource();
 	int getIconResourceNormal();
-	int getIconResourcePressed();
 	List getParameterLabelIfNullResources();
 	List getParameterTitleResources();
 	List getVariableTitleResources();
