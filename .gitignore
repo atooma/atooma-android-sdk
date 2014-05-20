@@ -17,6 +17,7 @@ proguard.cfg
 out/
 gen/
 libs/
+bin/
 
 #generated
 .zip
