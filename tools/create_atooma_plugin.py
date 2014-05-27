@@ -26,12 +26,6 @@ icon_normal_el_file_content = "iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAAB
 icon_normal_file = "plugin_icon_normal.png"
 icon_normal_file_content = "iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3gUUDxwkIlNm9gAAAotJREFUeNrt3TFyUzEUhWH7jnbAYijSULGgNCkoGAqKNFkQFU0KFsMaTM8wg+1n+13pfP8CEknnv0dKJhkfT6fTAbmUIyAAghlbv8Dvj9/abert9f0u99rzy9Ox214//Pq6rwCrhn3u9+ooxfICPDL0S9YyowxD6NkyDKFnyzAE/7j9dBRhCD5bhCH4bBFK+Nl7H4LPboMSfnYbDMFnt0EJP7sNSvjZEgzBZ18JJfzsNijhZ0tQws+WoISfLUEJP1uCEn62BP4qOJzj1n8M+fLzs+nfke+ffhx3awDh78/WDEr42RJ4A4RTpj+7BUr42RK4AlwBpj+5BUr42RK4AlwBpj+5BTSABjD9yS2gATSA6U9uAQ2gAUAA9R97DWgADQACqP/Ya0ADaAAQQP3HXgMaQAOAACAACOABGPgQ1AAaAAQAAUAAEAAEAAFAABAABAABQAAQAAQAAUAAEAAEAAFAAKwmwNZPn0B//s5YA2gAEAAEAAE8BMMegBoABCDAmVWB9epfA4AABLiwMrBO/WsAEIAAV1YH5q9/DYD/C6AF1p1+DYDzBNACa06/BsD5AmiB9ab/4gYgwVrhuwJwuQBaYJ3pv7oBSLBG+K4AXC+AFph/+jc3AAnmDv8mV8DzyxMJduIWZ+8N4A3Qw0Tsc+bVbUF47FlX14XhMWdc3ReI+55tzbJQ4d/nTGu2BQv/toxHLPzt9d0nkjYdolplI8JvLAAJ+p7V2GNjroQ+Q1IpGxV+gwbQBv2GodIPIH3vo9NBpLRBJ+lHx4NZVYSObTc6H9QqInS+5sYsBzebDLO8bcaMB9pVhhkftOMwIZ1kmP2nmHGYnH8FcC8pVvyR9Xg6+a1sMv4qmABI5g+LcEd46X+10wAAAABJRU5ErkJggg=="
 
-icon_pressed_el_file = "plugin_icon_el_pressed.png"
-icon_pressed_el_file_content = "iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3gUUDy4HbURD9QAAAn1JREFUeNrt3etNXDEUReG5R+4gNBAk6L8eIpEGSA03/1GkzPsee3+rALC919k2CDTbvu8n5FKOgAAIZtz6BX79/tNuU++vLw+51z4+v7Zue337+eNYAVYN+9zv1VGK5QV4ZuiXrGVGGYbQs2UYQs+WYQj+efvpKMIQfLYIQ/DZIpTws/c+BJ/dBiX87DYYgs9ugxJ+dhuU8LMlGILPvhJK+NltUMLPlqCEny1BCT9bghJ+tgQl/GwJ/FVwONut/xiybZvpP5B937fDGkD4DSb4xgxK+NkSeAOEU6Y/uwVK+NkSuAJcAaY/uQVK+NkSuAJcAaY/uQU0gAYw/cktoAE0gOlPbgENoAFAAPUfew1oAA0AAqj/2GtAA2gAEED9x14DGkADgAAgAAjgARj4ENQAGgAEAAFAABAABAABQAAQAAQAAUAAEAAEAAFAABAABAABQACsJsCtnz6B/nzPWANoABAABAABPATDHoAaAAQgwJlVgfXqXwOAAAS4sDKwTv1rABCAAFdWB+avfw2A/wugBdadfg2A8wTQAmtOvwbA+QJogfWm/+IGIMFa4bsCcLkAWmCd6b+6AUiwRviuAFwvgBaYf/pvbgASzB3+Xa6Aj88vEhzEPc7eG8AboIeJOObMq9uC8Nyzrq4Lw3POuLovEI8925plocJ/zJnWbAsW/n0Zz1j4++uLTyRtOkS1ykaE31gAEvQ9q3HExlwJfYakUjYq/AYNoA36DUOlH0D63keng0hpg07Sj44Hs6oIHdtudD6oVUTofM2NWQ5uNhlmeduMGQ+0qwwzPmjHaUI6yTD7TzHjNDn/CuBRUqz4I+u2734rm4y/CiYAkvkLwp9KeKsKcUQAAAAASUVORK5CYII="
-
-icon_pressed_file = "plugin_icon_pressed.png"
-icon_pressed_file_content = icon_pressed_el_file_content
-
 folder = os.path.join(dest_folder, "Atooma%sPlugin" % plugin_name)
 package = "com.atooma.plugin.%s" % plugin_name.lower()
 strings_file = "strings.xml"
@@ -180,7 +174,5 @@ create_file(os.path.join(folder, manifest_file), manifest_file_content)
 create_file(os.path.join(values_directory, strings_file), strings_file_content)
 create_binary_file(os.path.join(drawable_directory, icon_normal_file), icon_normal_file_content.decode('base64'))
 create_binary_file(os.path.join(drawable_directory, icon_normal_el_file), icon_normal_el_file_content.decode('base64'))
-create_binary_file(os.path.join(drawable_directory, icon_pressed_file), icon_pressed_file_content.decode('base64'))
-create_binary_file(os.path.join(drawable_directory, icon_pressed_el_file), icon_pressed_el_file_content.decode('base64'))
 copy_file(os.path.join('..', 'bin', 'atoomasdk.jar'), os.path.join(libs_directory, 'atoomasdk.jar'))
 
