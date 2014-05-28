@@ -42,6 +42,7 @@ public abstract class RegisterService extends Service {
 
 			@Override
 			public void onServiceDisconnected(ComponentName name) {
+				Log.v("ATOOMA", "onServiceDisconnected");
 				bound = false;
 			}
 		};
@@ -52,7 +53,7 @@ public abstract class RegisterService extends Service {
 			bound = bindService(i, mConnection, Context.BIND_AUTO_CREATE);
 			Log.v("ATOOMAPLUGIN", "try to bind, bound=" + bound);
 		}
-		return super.onStartCommand(intent, flags, startId);
+		return START_STICKY;
 	}
 
 	public abstract IModulePlugin getModuleInstance();
