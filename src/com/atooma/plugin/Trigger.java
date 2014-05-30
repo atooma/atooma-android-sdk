@@ -81,6 +81,12 @@ public abstract class Trigger extends ITriggerPlugin.Stub implements ITriggerPlu
 
 	public abstract void onInvoke(String ruleId, ParameterBundle parameters);
 
+	public void revoke(String ruleId) throws RemoteException {
+		onRevoke(ruleId);
+	}
+
+	public abstract void onRevoke(String ruleId);
+
 	@Override
 	public IBinder asBinder() {
 		return this;

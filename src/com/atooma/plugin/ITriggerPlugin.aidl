@@ -15,5 +15,6 @@ interface ITriggerPlugin {
 	List getParameterTitleResources();
 	List getVariableTitleResources();
 	void invoke(String ruleId, in ParameterBundle parameters);
+	void revoke(String ruleId);
 	int getVersion();
 }
