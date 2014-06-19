@@ -82,6 +82,12 @@ public abstract class AlarmBasedTrigger extends IAlarmBasedTriggerPlugin.Stub im
 
 	public abstract void onTimeout(String ruleId, ParameterBundle parameters);
 
+	public void revoke(String ruleId) throws RemoteException {
+		onRevoke(ruleId);
+	}
+
+	public abstract void onRevoke(String ruleId);
+
 	@Override
 	public IBinder asBinder() {
 		return this;

@@ -16,6 +16,7 @@ interface IAlarmBasedTriggerPlugin {
 	List getParameterTitleResources();
 	List getVariableTitleResources();
 	void timeout(String ruleId, in ParameterBundle parameters);
+	void revoke(String ruleId);
 	int getVersion();
 	Schedule getScheduleInfo();
 }

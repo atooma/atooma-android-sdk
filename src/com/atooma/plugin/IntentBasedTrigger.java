@@ -82,6 +82,12 @@ public abstract class IntentBasedTrigger extends IIntentBasedTriggerPlugin.Stub 
 
 	public abstract void onReceive(String ruleId, ParameterBundle parameters, Bundle bundleIntent);
 
+	public void revoke(String ruleId) throws RemoteException {
+		onRevoke(ruleId);
+	}
+
+	public abstract void onRevoke(String ruleId);
+
 	@Override
 	public IBinder asBinder() {
 		return this;

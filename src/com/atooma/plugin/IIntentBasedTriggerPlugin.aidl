@@ -15,6 +15,7 @@ interface IIntentBasedTriggerPlugin {
 	List getParameterTitleResources();
 	List getVariableTitleResources();
 	void receive(String ruleId, in ParameterBundle parameters, in Bundle bundleIntent);
+	void revoke(String ruleId);
 	int getVersion();
 	String getIntentFilter();
 }
