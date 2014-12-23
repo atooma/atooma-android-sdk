@@ -1,0 +1,53 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+* .gitignore
+* LICENSE.md
+* README.md
+* atooma-android-sdk.iml
+* ic_launcher-web.png
+* proguard-project.txt
+* release.py
+* tools/
+* tools/create_atooma_plugin.py
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+* AndroidManifest.xml => app/src/main/AndroidManifest.xml
+* assets/ => app/src/main/assets/
+* res/ => app/src/main/res/
+* src/ => app/src/main/java/
+* src/com/atooma/sdk/IAtoomaPluginService.aidl => app/src/main/aidl/com/atooma/sdk/IAtoomaPluginService.aidl
+* src/com/atooma/sdk/plugin/IAlarmBasedTriggerPlugin.aidl => app/src/main/aidl/com/atooma/sdk/plugin/IAlarmBasedTriggerPlugin.aidl
+* src/com/atooma/sdk/plugin/IConditionCheckerPlugin.aidl => app/src/main/aidl/com/atooma/sdk/plugin/IConditionCheckerPlugin.aidl
+* src/com/atooma/sdk/plugin/IIntentBasedTriggerPlugin.aidl => app/src/main/aidl/com/atooma/sdk/plugin/IIntentBasedTriggerPlugin.aidl
+* src/com/atooma/sdk/plugin/IModulePlugin.aidl => app/src/main/aidl/com/atooma/sdk/plugin/IModulePlugin.aidl
+* src/com/atooma/sdk/plugin/IPerformerPlugin.aidl => app/src/main/aidl/com/atooma/sdk/plugin/IPerformerPlugin.aidl
+* src/com/atooma/sdk/plugin/ITriggerPlugin.aidl => app/src/main/aidl/com/atooma/sdk/plugin/ITriggerPlugin.aidl
+* src/com/atooma/sdk/plugin/ParameterBundle.aidl => app/src/main/aidl/com/atooma/sdk/plugin/ParameterBundle.aidl
+* src/com/atooma/sdk/plugin/Schedule.aidl => app/src/main/aidl/com/atooma/sdk/plugin/Schedule.aidl
+* src/com/atooma/sdk/plugin/Values.aidl => app/src/main/aidl/com/atooma/sdk/plugin/Values.aidl
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)
