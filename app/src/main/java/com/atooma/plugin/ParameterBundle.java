@@ -1,4 +1,4 @@
-package com.atooma.sdk.plugin;
+package com.atooma.plugin;
 
 import java.util.HashMap;
 

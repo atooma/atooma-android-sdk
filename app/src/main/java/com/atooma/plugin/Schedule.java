@@ -1,4 +1,4 @@
-package com.atooma.sdk.plugin;
+package com.atooma.plugin;
 
 import android.os.Parcel;
 import android.os.Parcelable;

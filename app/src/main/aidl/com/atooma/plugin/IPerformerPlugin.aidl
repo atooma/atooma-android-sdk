@@ -1,8 +1,8 @@
 // IRemoteService.aidl
-package com.atooma.sdk.plugin;
+package com.atooma.plugin;
 
-import com.atooma.sdk.plugin.Values;
-import com.atooma.sdk.plugin.ParameterBundle;
+import com.atooma.plugin.Values;
+import com.atooma.plugin.ParameterBundle;
 
 interface IPerformerPlugin {
 	boolean isVisible();

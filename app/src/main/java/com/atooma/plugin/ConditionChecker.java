@@ -1,7 +1,4 @@
-package com.atooma.sdk.plugin;
-
-import java.util.ArrayList;
-import java.util.List;
+package com.atooma.plugin;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -9,7 +6,11 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 
-import com.atooma.sdk.IAtoomaPluginService;
+import com.atooma.IAtoomaPluginService;
+import com.atooma.plugin.IConditionCheckerPlugin;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class ConditionChecker extends IConditionCheckerPlugin.Stub implements IConditionCheckerPlugin {
 

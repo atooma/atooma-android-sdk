@@ -1,10 +1,11 @@
 // IRemoteService.aidl
-package com.atooma.sdk.plugin;
+package com.atooma.plugin;
 
-import com.atooma.sdk.plugin.Values;
-import com.atooma.sdk.plugin.ParameterBundle;
+import com.atooma.plugin.Values;
+import com.atooma.plugin.ParameterBundle;
+import com.atooma.plugin.Schedule;
 
-interface ITriggerPlugin {
+interface IAlarmBasedTriggerPlugin {
 	boolean isVisible();
 	String getId();
 	List<Values> getParameters();
@@ -14,7 +15,8 @@ interface ITriggerPlugin {
 	List getParameterLabelIfNullResources();
 	List getParameterTitleResources();
 	List getVariableTitleResources();
-	void invoke(String ruleId, in ParameterBundle parameters);
+	void timeout(String ruleId, in ParameterBundle parameters);
 	void revoke(String ruleId);
 	int getVersion();
+	Schedule getScheduleInfo();
 }

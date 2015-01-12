@@ -1,7 +1,7 @@
-package com.atooma.sdk;
+package com.atooma;
 
-import com.atooma.sdk.plugin.IModulePlugin;
-import com.atooma.sdk.plugin.ParameterBundle;
+import com.atooma.plugin.IModulePlugin;
+import com.atooma.plugin.ParameterBundle;
 
 interface IAtoomaPluginService {
 	void registerModule(in IModulePlugin module);

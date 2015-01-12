@@ -1,5 +1,5 @@
 // IRemoteService.aidl
-package com.atooma.sdk.plugin;
+package com.atooma.plugin;
 
 interface IModulePlugin {
 		boolean init();
