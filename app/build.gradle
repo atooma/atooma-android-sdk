@@ -1,20 +1,79 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven'
+apply plugin: 'signing'
+
 android {
     compileSdkVersion 21
     buildToolsVersion "21.1.2"
-
     defaultConfig {
         minSdkVersion 9
         targetSdkVersion 17
     }
-
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
+}
+
+version = "1.2.1"
+group = "com.atooma"
+archivesBaseName = "atooma-android-sdk"
+
+signing {
+    sign configurations.archives
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: sonatypeUsername, password: sonatypePassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: sonatypeUsername, password: sonatypePassword)
+            }
+
+            pom.project {
+                name 'Atooma Android SDK'
+                packaging 'jar'
+                // optionally artifactId can be defined here
+                description 'Atooma Software Development Kit allows you to write your own modules for Atooma app'
+                url 'https://github.com/atooma/atooma-android-sdk'
+
+                scm {
+                    url 'https://github.com/atooma/atooma-android-sdk.git'
+                    connection 'scm:git@github.com:atooma/atooma-android-sdk.git'
+                    developerConnection 'scm:git@github.com:atooma/atooma-android-sdk.git'
+                }
+
+                licenses {
+                    license {
+                        name 'LGPL V3'
+                        url 'https://www.gnu.org/licenses/lgpl.html'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'monossido'
+                        name 'Lorenzo Braghetto'
+                        email 'l.braghetto@atooma.com'
+                        organization 'Atooma'
+                    }
+
+                }
+            }
+        }
+    }
 }
