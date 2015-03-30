@@ -1,12 +1,8 @@
 package com.atooma.plugin;
 
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.IBinder;
 
-import com.atooma.IAtoomaPluginService;
 import com.atooma.plugin.IPerformerPlugin;
 
 import java.util.ArrayList;
@@ -14,7 +10,6 @@ import java.util.List;
 
 public abstract class Performer extends IPerformerPlugin.Stub implements IPerformerPlugin {
 
-    private IAtoomaPluginService mService;
     private boolean bound;
     private String id;
 
@@ -36,11 +31,6 @@ public abstract class Performer extends IPerformerPlugin.Stub implements IPerfor
         defineUI();
         declareParameters();
         declareVariables();
-        if (!bound) {
-            Intent i = new Intent();
-            i.setClassName("com.atooma", "com.atooma.AtoomaPluginService");
-            bound = context.bindService(i, mConnection, Context.BIND_AUTO_CREATE);
-        }
     }
 
     public abstract void defineUI();
@@ -105,19 +95,6 @@ public abstract class Performer extends IPerformerPlugin.Stub implements IPerfor
     public boolean isVisible() {
         return true;
     }
-
-    public ServiceConnection mConnection = new ServiceConnection() {
-
-        public void onServiceConnected(ComponentName className, IBinder service) {
-            mService = IAtoomaPluginService.Stub.asInterface(service);
-            bound = true;
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            bound = false;
-        }
-    };
 
     @Override
     public IBinder asBinder() {

@@ -1,23 +1,16 @@
 package com.atooma.plugin;
 
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
 
-import com.atooma.IAtoomaPluginService;
-import com.atooma.plugin.IIntentBasedTriggerPlugin;
+import com.atooma.sdk.IAtoomaService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class IntentBasedTrigger extends IIntentBasedTriggerPlugin.Stub implements IIntentBasedTriggerPlugin {
-
-    protected IAtoomaPluginService mService;
-    protected boolean bound;
 
     private Context context;
     private int normalIcon;
@@ -31,6 +24,8 @@ public abstract class IntentBasedTrigger extends IIntentBasedTriggerPlugin.Stub 
     private ArrayList<Values> parameters = new ArrayList<Values>();
     private List<Integer> parameterLabels = new ArrayList<Integer>();
     private List<Integer> parameterNullLabels = new ArrayList<Integer>();
+
+    private IAtoomaService atoomaService;
 
     public abstract void defineUI();
 
@@ -47,37 +42,19 @@ public abstract class IntentBasedTrigger extends IIntentBasedTriggerPlugin.Stub 
         defineUI();
         declareParameters();
         declareVariables();
-        if (!bound) {
-            Intent i = new Intent();
-            i.setClassName("com.atooma", "com.atooma.AtoomaPluginService");
-            bound = context.bindService(i, mConnection, Context.BIND_AUTO_CREATE);
-        }
     }
 
     public void trigger(String ruleId, ParameterBundle parameters) {
-        if (bound) {
-            try {
-                mService.trigger(getModuleId(), getId(), ruleId, parameters);
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
+        try {
+            atoomaService.trigger(moduleId, id, ruleId, parameters);
+        } catch (RemoteException e) {
+            e.printStackTrace();
         }
     }
 
-    public ServiceConnection mConnection = new ServiceConnection() {
 
-        public void onServiceConnected(ComponentName className, IBinder service) {
-            mService = IAtoomaPluginService.Stub.asInterface(service);
-            bound = true;
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            bound = false;
-        }
-    };
-
-    public void receive(String ruleId, ParameterBundle parameters, Bundle bundleIntent) throws RemoteException {
+    public void receive(IAtoomaService atoomaService, String ruleId, ParameterBundle parameters, Bundle bundleIntent) throws RemoteException {
+        this.atoomaService = atoomaService;
         onReceive(ruleId, parameters, bundleIntent);
     }
 
@@ -178,5 +155,4 @@ public abstract class IntentBasedTrigger extends IIntentBasedTriggerPlugin.Stub 
     void setModuleId(String moduleId) {
         this.moduleId = moduleId;
     }
-
 }

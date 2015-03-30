@@ -3,6 +3,7 @@ package com.atooma.plugin;
 
 import com.atooma.plugin.Values;
 import com.atooma.plugin.ParameterBundle;
+import com.atooma.sdk.IAtoomaService;
 
 interface IIntentBasedTriggerPlugin {
 	boolean isVisible();
@@ -14,7 +15,7 @@ interface IIntentBasedTriggerPlugin {
 	List getParameterLabelIfNullResources();
 	List getParameterTitleResources();
 	List getVariableTitleResources();
-	void receive(String ruleId, in ParameterBundle parameters, in Bundle bundleIntent);
+	void receive(in IAtoomaService atoomaService, String ruleId, in ParameterBundle parameters, in Bundle bundleIntent);
 	void revoke(String ruleId);
 	int getVersion();
 	String getIntentFilter();

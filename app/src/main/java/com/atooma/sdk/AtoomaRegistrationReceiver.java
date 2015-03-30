@@ -4,11 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.atooma.IAtoomaPluginService;
-
 public class AtoomaRegistrationReceiver extends BroadcastReceiver {
-
-    protected static IAtoomaPluginService mService;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -16,7 +12,7 @@ public class AtoomaRegistrationReceiver extends BroadcastReceiver {
     }
 
     public Class getRegisterServiceClass() {
-        return RegisterService.class;
+        return AtoomaPluginService.class;
     }
 
 }
