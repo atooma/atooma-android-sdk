@@ -99,9 +99,9 @@ register_file_content = """
 package %s;
 
 import com.atooma.plugin.Module;
-import com.atooma.sdk.RegisterService;
+import com.atooma.sdk.AtoomaPluginService;
 
-public class %sRegister extends RegisterService {
+public class %sRegister extends AtoomaPluginService {
     @Override
     public Module getModuleInstance() {
         return new %s(this, %s.MODULE_ID, %s.MODULE_VERSION);
@@ -132,7 +132,7 @@ manifest_file_content = """
             </intent-filter>
         </receiver>
 
-        <service android:name=".%s" android:process=":remote"/>
+        <service android:name=".%s" android:exported="true"/>
     </application>
 
 </manifest>
@@ -153,26 +153,38 @@ def create_binary_file(path, content):
 def copy_file(path_src, path_dest):
     shutil.copyfile(path_src, path_dest)
 
-bin_directory = os.path.join(folder, 'bin')
+def copy_dir(path_src, path_dest):
+    shutil.copytree(path_src, path_dest)
+
+bin_directory = os.path.join(folder, 'build')
 create_directory(bin_directory)
-res_directory = os.path.join(folder, 'res')
+gradle_directory = os.path.join(folder, 'gradle')
+copy_dir(os.path.join('..', 'gradle'), gradle_directory)
+copy_file('project_build.gradle', os.path.join(folder, 'build.gradle'))
+copy_file(os.path.join('..', 'gradlew'), os.path.join(folder, 'gradlew'))
+copy_file(os.path.join('..', 'gradlew.bat'), os.path.join(folder, 'gradlew.bat'))
+copy_file(os.path.join('..', 'settings.gradle'), os.path.join(folder, 'settings.gradle'))
+app_directory = os.path.join(folder, 'app')
+create_directory(app_directory)
+copy_file('build.gradle', os.path.join(app_directory, 'build.gradle'))
+src_directory = os.path.join(app_directory, 'src')
+create_directory(src_directory)
+main_directory = os.path.join(src_directory, 'main')
+create_directory(main_directory)
+res_directory = os.path.join(main_directory, 'res')
 create_directory(res_directory)
 values_directory = os.path.join(res_directory, 'values')
 create_directory(values_directory)
 drawable_directory = os.path.join(res_directory, 'drawable')
 create_directory(drawable_directory)
-libs_directory = os.path.join(folder, 'libs')
-create_directory(libs_directory)
-src_directory = os.path.join(folder, 'src')
+java_directory = os.path.join(main_directory, 'java')
 for directory in package.split('.'):
-    src_directory = os.path.join(src_directory, directory)
-    create_directory(src_directory)
-create_file(os.path.join(src_directory, module_file), module_file_content)
-create_file(os.path.join(src_directory, register_file), register_file_content)
-create_file(os.path.join(src_directory, receiver_file), receiver_file_content)
-create_file(os.path.join(folder, manifest_file), manifest_file_content)
+    java_directory = os.path.join(java_directory, directory)
+    create_directory(java_directory)
+create_file(os.path.join(java_directory, module_file), module_file_content)
+create_file(os.path.join(java_directory, register_file), register_file_content)
+create_file(os.path.join(java_directory, receiver_file), receiver_file_content)
+create_file(os.path.join(main_directory, manifest_file), manifest_file_content)
 create_file(os.path.join(values_directory, strings_file), strings_file_content)
 create_binary_file(os.path.join(drawable_directory, icon_normal_file), icon_normal_file_content.decode('base64'))
 create_binary_file(os.path.join(drawable_directory, icon_normal_el_file), icon_normal_el_file_content.decode('base64'))
-copy_file(os.path.join('..', 'bin', 'atoomasdk.jar'), os.path.join(libs_directory, 'atoomasdk.jar'))
-
